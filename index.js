@@ -345,7 +345,7 @@ if (text.includes('!cry')){
       conn.sendMessage(id, texto, MessageType.text);
    }
 
-   /*if (text.includes("!tts")) {
+   /*if (text.includes("..tts")) {
       const fs = require("fs");
       const spawn = require("child_process").spawn;
 
