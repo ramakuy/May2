@@ -141,9 +141,9 @@ conn.on('message-new', async(m) =>
 
    }
 
-   if (text.includes("!girl"))
+   if (text.includes("!cat"))
    {
-      var itens = ["garota linda", "garota sexy", "garota thumblr", "garota estilosa"];
+      var itens = ["cat", "gatos", "cat cutie", "gato"];
       var girl = itens[Math.floor(Math.random() * itens.length)];
       var url = "https://api.fdci.se/rep.php?gambar=" + girl;
 
@@ -168,9 +168,9 @@ conn.on('message-new', async(m) =>
 
    }
 
-   if (text.includes("!boy"))
+   if (text.includes("!dog"))
    {
-      var itens = ["homem lindo", "homem sexy", "homem thumblr", "homem estiloso"];
+      var itens = ["cachorro", "cachorros", "dog", "dog cutie"];
       var boy = itens[Math.floor(Math.random() * itens.length)];
       var url = "https://api.fdci.se/rep.php?gambar=" + boy;
 
@@ -195,7 +195,7 @@ conn.on('message-new', async(m) =>
 
    }
 
-   if (text.includes("!searchimage"))
+   if (text.includes("!image"))
    {
       var texto = text.replace("!searchimage ", "");
       var url = "https://api.fdci.se/rep.php?gambar=" + texto;
@@ -221,7 +221,7 @@ conn.on('message-new', async(m) =>
 
    }
 
-  if (text.includes("#igstalk")){
+  if (text.includes("!igstalk")){
   const aris = text.replace(/#igstalk /, "")
   axios.get(`https://tobz-api.herokuapp.com/api/stalk?username=${aris}`).then ((res) =>{
   conn.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
@@ -230,7 +230,7 @@ conn.on('message-new', async(m) =>
 })
 }
    
-   if (text.includes('#trap')){
+   if (text.includes('!trap')){
   var teks = text.replace(/#trap /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/nsfwtrap`).then((res) => {
       imageToBase64(res.data.result)
@@ -242,7 +242,7 @@ conn.on('message-new', async(m) =>
     })
 }
    
-   if (text.includes("#porn")){
+   if (text.includes("!porn")){
 const teks = text.replace(/#porn/, "")
 axios.get(`https://mnazria.herokuapp.com/api/porn?search=${teks}`).then((res) => {
     let porno = ` *LISTA DOS RESULTADOS* \n\n *Canal:* ${res.data.result[0].actors} \n\n *DURAÇÃO:* ${res.data.result[0].duration}  \n\n *TITULO:* ${res.data.result[0].title}\n\n *URL:* ${res.data.result[0].url}`;
@@ -250,7 +250,7 @@ axios.get(`https://mnazria.herokuapp.com/api/porn?search=${teks}`).then((res) =>
 })
 }
 	
-if (text.includes('#hentai')){
+if (text.includes('!hentai')){
   var teks = text.replace(/!randomhentai2 /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/hentai`).then((res) => {
       imageToBase64(res.data.result)
@@ -261,36 +261,7 @@ if (text.includes('#hentai')){
         })
     })
 }
-   
-   if (text.includes("#anime"))
-   {
-    var items = ["anime girl", "anime cantik", "anime monkey", "anime aesthetic"];
-    var cewe = items[Math.floor(Math.random() * items.length)];
-    var url = "https://api.fdci.se/rep.php?gambar=" + cewe;
-    
-    axios.get(url)
-      .then((result) => {
-        var b = JSON.parse(JSON.stringify(result.data));
-        var cewek =  b[Math.floor(Math.random() * b.length)];
-        imageToBase64(cewek) // Path to the image
-        .then(
-            (response) => {
-	var buf = Buffer.from(response, 'base64'); // Ta-da	
-              conn.sendMessage(
-            id,
-              buf,MessageType.image)
-       
-            }
-        )
-        .catch(
-            (error) => {
-                console.log(error); // Logs an error if there was one
-            }
-        )
-    
-    });
-    }
-   
+ 
    if (text.includes("May")){
 const aris = text.replace(/May /, "")
 axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
@@ -320,7 +291,7 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
   })
  }
    
-   if (text.includes("#letra")){
+   if (text.includes("!letra")){
 	const teks = text.split("#letra")[1]
 	axios.get(`http://scrap.terhambar.com/lirik?word=${teks}`).then ((res) => {
 	 	let hasil = `Letra: ${teks}\n\n\n ${res.data.result.lirik}`
@@ -328,7 +299,7 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
 	})
 }
    
-   if (text.includes("#ig")){
+   if (text.includes("!ig")){
 const teks = text.replace(/#ig /, "")
 axios.get(`https://tobz-api.herokuapp.com/api/ig?url=`).then((res) => {
     let hasil = `Download sendiri melalui link dibawah ya, takut servernya down xixi..\n\nLink: ${res.data.result}`;
