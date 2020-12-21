@@ -222,7 +222,7 @@ conn.on('message-new', async(m) =>
    }
 
    if (text.includes('!trap')){
-  var teks = text.replace(/#trap /, '')
+  var teks = text.replace(/!trap /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/nsfwtrap`).then((res) => {
       imageToBase64(res.data.result)
         .then(
@@ -234,7 +234,7 @@ conn.on('message-new', async(m) =>
 }
    
    if (text.includes("!porn")){
-const teks = text.replace(/#porn/, "")
+const teks = text.replace(/!porn/, "")
 axios.get(`https://mnazria.herokuapp.com/api/porn?search=${teks}`).then((res) => {
     let porno = ` *LISTA DOS RESULTADOS* \n\n *Canal:* ${res.data.result[0].actors} \n\n *DURAÇÃO:* ${res.data.result[0].duration}  \n\n *TITULO:* ${res.data.result[0].title}\n\n *URL:* ${res.data.result[0].url}`;
     conn.sendMessage(id, porno ,MessageType.text);
@@ -289,7 +289,54 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
 	conn.sendMessage(id, hasil, MessageType.text)
 	})
 }
-   
+  
+if (text.includes('!kiss')){
+  var teks = text.replace(/!randomkis /, '')
+    axios.get('https://tobz-api.herokuapp.com/api/kiss')
+    .then((res) => {
+      imagegifToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, 'Tunggu yha botlent sedang memperoses', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.imagegif)
+        })
+    })
+}	
+
+if (text.includes('!stalk')){
+  var teks = text.replace(/!profileig /, '')
+    axios.get('https://arugaz.herokuapp.com/api/stalk?username='+teks)
+    .then((res) => {
+      imageToBase64(res.data.Profile_pic)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
+
+if (text.includes("!ip")){
+const teks = text.replace(/!checkip/, "")
+axios.get(`https://mnazria.herokuapp.com/api/check?ip=${teks}`).then((res) => {
+    let hasil = `${result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+})
+}	
+	
+if (text.includes('!cry')){
+  var teks = text.replace(/!randomcry /, '')
+    axios.get(`https://tobz-api.herokuapp.com/api/cry`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
+	
    if (text.includes("!test id")){
       conn.sendMessage(id, id, MessageType.text);
       conn.sendMessage(id, MessageType + " / " + messageType, MessageType.text);
