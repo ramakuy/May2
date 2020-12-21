@@ -291,13 +291,13 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
 }
   	
 	
-if (text.includes("!ip")){
-const teks = text.replace(/!checkip/, "")
-axios.get(`https://mnazria.herokuapp.com/api/check?ip=${teks}`).then((res) => {
-    let hasil = `${result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
-})
-}	
+if (text.includes("!ip"))
+  { const aris = text.replace(/!ip /, "") 
+  axios.get(`https://mnazria.herokuapp.com/api/check?ip=${aris}`).then((res) =>{ 
+  let hasil = ` *🔍CONSULTA REALIZADA🔍* \n\n ➸ *CIDADE:*  ${res.data.city}\n ➸ *Latitude* : ${res.data.latitude}\n ➸ *Longtitude* : ${res.data.longitude}\n ➸ *REGIÃO* : ${res.data.region_name}\n ➸ *UF* : ${res.data.region_code}\n ➸ *IP* : ${res.data.ip}\n ➸ *TIPO* : ${res.data.type}\n ➸ *CEP* : ${res.data.zip}\n ➸ *LOCALIDADE* : ${res.data.location.geoname_id}\n ➸ *CAPITAL* : ${res.data.location.capital}\n ➸ *DDD* : ${res.data.location.calling_code}\n ➸ *PAÍS* : ${res.data.location.country_flag_emoji}\n *📌BY:May Bot*` 
+  conn.sendMessage(id, hasil, MessageType.text); 
+ })
+ }
 	
 if (text.includes('!cry')){
   var teks = text.replace(/!randomcry /, '')
@@ -316,7 +316,7 @@ if (text.includes('!cry')){
       conn.sendMessage(id, MessageType + " / " + messageType, MessageType.text);
    }
 
-   if (text.includes("!tts")) {
+   if (text.includes("..tts")) {
       var texttomp3 = require("text-to-mp3");
       var texto = text.replace("!tts ", "");
       const filepath = "./mp3/som.mp3";
