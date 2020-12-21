@@ -289,34 +289,8 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
 	conn.sendMessage(id, hasil, MessageType.text)
 	})
 }
-  
-if (text.includes('!kiss')){
-  var teks = text.replace(/!randomkis /, '')
-    axios.get('https://tobz-api.herokuapp.com/api/kiss')
-    .then((res) => {
-      imagegifToBase64(res.data.result)
-        .then(
-          (ress) => {
-            conn.sendMessage(id, 'Tunggu yha botlent sedang memperoses', MessageType.text)
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.imagegif)
-        })
-    })
-}	
-
-if (text.includes('!stalk')){
-  var teks = text.replace(/!profileig /, '')
-    axios.get('https://arugaz.herokuapp.com/api/stalk?username='+teks)
-    .then((res) => {
-      imageToBase64(res.data.Profile_pic)
-        .then(
-          (ress) => {
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image)
-        })
-    })
-}	
-
+  	
+	
 if (text.includes("!ip")){
 const teks = text.replace(/!checkip/, "")
 axios.get(`https://mnazria.herokuapp.com/api/check?ip=${teks}`).then((res) => {
