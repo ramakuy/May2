@@ -221,15 +221,6 @@ conn.on('message-new', async(m) =>
 
    }
 
-  if (text.includes("!igstalk")){
-  const aris = text.replace(/#igstalk /, "")
-  axios.get(`https://tobz-api.herokuapp.com/api/stalk?username=${aris}`).then ((res) =>{
-  conn.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
-  let hasil = ` INSTAGRAM ${aris} \n\n Nome do usuário✍️ : ${res.data.Username} \n Nome✍️ : ${res.data.Name} \n Número de Seguidores✍️ : ${res.data.Jumlah_Followers} \n Seguindo✍️ : ${res.data.Jumlah_Following} \n Número de Postagem✍️ : ${res.data.Jumlah_Post} `;
-  conn.sendMessage(id, hasil, MessageType.text);
-})
-}
-   
    if (text.includes('!trap')){
   var teks = text.replace(/#trap /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/nsfwtrap`).then((res) => {
@@ -299,14 +290,6 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
 	})
 }
    
-   if (text.includes("!ig")){
-const teks = text.replace(/#ig /, "")
-axios.get(`https://tobz-api.herokuapp.com/api/ig?url=`).then((res) => {
-    let hasil = `Download sendiri melalui link dibawah ya, takut servernya down xixi..\n\nLink: ${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
-})
-}
-   
    if (text.includes("!test id")){
       conn.sendMessage(id, id, MessageType.text);
       conn.sendMessage(id, MessageType + " / " + messageType, MessageType.text);
@@ -336,8 +319,8 @@ axios.get(`https://tobz-api.herokuapp.com/api/ig?url=`).then((res) => {
       }, 3000);
    }
 
-   if (text.includes("!say")){
-      var texto = text.replace("!say ", "");
+   if (text.includes("!escrever")){
+      var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
    }
 
