@@ -93,7 +93,7 @@ conn.on('message-new', async(m) =>
       let caption = videoMessage.caption.toLocaleLowerCase()
       const buffer = await conn.downloadMediaMessage(m)
 
-      if (caption == "!gifsticker" || caption == "!stickergif"){
+      if (caption == "..gifsticker" || caption == "..stickergif"){
          conn.sendMessage(id, "[Aguarde] ⌛ Carregando Sticker...'", MessageType.text);
          
          const stiker = await conn.downloadAndSaveMediaMessage(m) // to decrypt & save to file
