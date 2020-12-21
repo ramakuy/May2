@@ -269,14 +269,14 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
  }
  if (text.includes("bot")){
 const aris = text.replace(/bot /, "")
-axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
+axios.get(`https://mnazria.herokuapp.com/api/simi?text=${aris}`).then((res) => {
     let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
   })
  }
  if (text.includes("Bot")){
 const aris = text.replace(/Bot /, "")
-axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
+axios.get(`https://mnazria.herokuapp.com/api/simi?text=${aris}`).then((res) => {
     let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
   })
