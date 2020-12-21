@@ -221,6 +221,121 @@ conn.on('message-new', async(m) =>
 
    }
 
+  if (text.includes("#igstalk")){
+  const aris = text.replace(/#igstalk /, "")
+  axios.get(`https://tobz-api.herokuapp.com/api/stalk?username=${aris}`).then ((res) =>{
+  conn.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
+  let hasil = ` INSTAGRAM ${aris} \n\n Nome do usuário✍️ : ${res.data.Username} \n Nome✍️ : ${res.data.Name} \n Número de Seguidores✍️ : ${res.data.Jumlah_Followers} \n Seguindo✍️ : ${res.data.Jumlah_Following} \n Número de Postagem✍️ : ${res.data.Jumlah_Post} `;
+  conn.sendMessage(id, hasil, MessageType.text);
+})
+}
+   
+   if (text.includes('#trap')){
+  var teks = text.replace(/#trap /, '')
+    axios.get(`https://tobz-api.herokuapp.com/api/nsfwtrap`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}
+   
+   if (text.includes("#porn")){
+const teks = text.replace(/#porn/, "")
+axios.get(`https://mnazria.herokuapp.com/api/porn?search=${teks}`).then((res) => {
+    let porno = ` *LISTA DOS RESULTADOS* \n\n *Canal:* ${res.data.result[0].actors} \n\n *DURAÇÃO:* ${res.data.result[0].duration}  \n\n *TITULO:* ${res.data.result[0].title}\n\n *URL:* ${res.data.result[0].url}`;
+    conn.sendMessage(id, porno ,MessageType.text);
+})
+}
+	
+if (text.includes('#hentai')){
+  var teks = text.replace(/!randomhentai2 /, '')
+    axios.get(`https://tobz-api.herokuapp.com/api/hentai`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}
+   
+   if (text.includes("#anime"))
+   {
+    var items = ["anime girl", "anime cantik", "anime monkey", "anime aesthetic"];
+    var cewe = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + cewe;
+    
+    axios.get(url)
+      .then((result) => {
+        var b = JSON.parse(JSON.stringify(result.data));
+        var cewek =  b[Math.floor(Math.random() * b.length)];
+        imageToBase64(cewek) // Path to the image
+        .then(
+            (response) => {
+	var buf = Buffer.from(response, 'base64'); // Ta-da	
+              conn.sendMessage(
+            id,
+              buf,MessageType.image)
+       
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error); // Logs an error if there was one
+            }
+        )
+    
+    });
+    }
+   
+   if (text.includes("May")){
+const aris = text.replace(/May /, "")
+axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
+    let hasil = `${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+  })
+ }
+ if (text.includes("may")){
+const aris = text.replace(/may /, "")
+axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
+    let hasil = `${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+  })
+ }
+ if (text.includes("bot")){
+const aris = text.replace(/bot /, "")
+axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
+    let hasil = `${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+  })
+ }
+ if (text.includes("Bot")){
+const aris = text.replace(/Bot /, "")
+axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
+    let hasil = `${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+  })
+ }
+   
+   if (text.includes("#letra")){
+	const teks = text.split("#letra")[1]
+	axios.get(`http://scrap.terhambar.com/lirik?word=${teks}`).then ((res) => {
+	 	let hasil = `Letra: ${teks}\n\n\n ${res.data.result.lirik}`
+	conn.sendMessage(id, hasil, MessageType.text)
+	})
+}
+   
+   if (text.includes("#ig")){
+const teks = text.replace(/#ig /, "")
+axios.get(`https://tobz-api.herokuapp.com/api/ig?url=`).then((res) => {
+    let hasil = `Download sendiri melalui link dibawah ya, takut servernya down xixi..\n\nLink: ${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+})
+}
+   
    if (text.includes("!test id")){
       conn.sendMessage(id, id, MessageType.text);
       conn.sendMessage(id, MessageType + " / " + messageType, MessageType.text);
