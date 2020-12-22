@@ -336,6 +336,24 @@ axios.get(`http://geradorapp.com/api/v1/cpf/generate?token=40849779ec68f8351995d
     conn.sendMessage(id, cpf ,MessageType.text);
 })
 }	
+
+if (text.includes("!cep")){
+const aris = text.replace(/!cep /, "")
+axios.get(`https://viacep.com.br/ws/${aris}/json/`).then((res) => {
+	conn.sendMessage(id, '[❗] ESPERE ESTOU BUSCANDO DADOS', MessageType.text)
+         let cep = `*🔍CONSULTA REALIZADA🔍* \n\n ➸ *CEP:* ${res.data.cep} \n\n ➸ *ENDEREÇO:* ${res.data.logradouro}\n\n ➸ *COMPLEMENTO:* ${res.data.complemento} \n\n ➸ *BAIRRO:* ${res.data.bairro} \n\n ➸ *LOCALIDADE:* ${res.data.localidade} \n\n ➸ *UF:* ${res.data.uf}\n\n ➸ *DDD:* ${res.data.ddd} \n\n *📌BY:May Bot* `;
+    conn.sendMessage(id, cep ,MessageType.text);
+}) 
+}
+
+
+if (text.includes("!placa"))
+  { const aris = text.replace(/!placa /, "") 
+  axios.get(`https://apicarros.com/v1/consulta/${aris}/json`).then((res) =>{ 
+  let hasil = ` *🔍CONSULTA REALIZADA🔍* \n\n ➸ *ANO:*  ${res.data.ano}\n ➸ *ANO MODELO* : ${res.data.anoModelo}\n ➸ *CHASSI* : ${res.data.chassi}\n ➸ *CODIGO RETORNO* : ${res.data.codigoRetorno}\n ➸ *CODIGO SITUACAO* : ${res.data.codigoSituacao}\n ➸ *COR* : ${res.data.cor}\n ➸ *MARCA* : ${res.data.marca}\n ➸ *MUNICIPIO* : ${res.data.municipio}\n ➸ *SITUACAO* : ${res.data.situacao}\n ➸ *UF* : ${res.data.uf}\n *📌BY:May Bot*` 
+  conn.sendMessage(id, hasil, MessageType.text); 
+ })
+ }	
 	
    if (text.includes("!test id")){
       conn.sendMessage(id, id, MessageType.text);
