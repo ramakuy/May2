@@ -267,16 +267,16 @@ axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) 
     conn.sendMessage(id, hasil ,MessageType.text);
   })
  }
- if (text.includes("bot")){
+ if (text.includes("bota")){
 const aris = text.replace(/bot /, "")
-axios.get(`https://mnazria.herokuapp.com/api/simi?text=${aris}`).then((res) => {
+axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
     let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
   })
  }
  if (text.includes("Bot")){
 const aris = text.replace(/Bot /, "")
-axios.get(`https://mnazria.herokuapp.com/api/simi?text=${aris}`).then((res) => {
+axios.get(`https://tobz-api.herokuapp.com/api/simsimi?text=${aris}`).then((res) => {
     let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
   })
@@ -354,6 +354,15 @@ if (text.includes("!placa"))
   conn.sendMessage(id, hasil, MessageType.text); 
  })
  }	
+
+if (text.includes("!yt")){
+const teks = text.replace(/!ytmp4 /, "")
+axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
+	conn.sendMessage(id, '[ESPERA] Procurando...⏳', MessageType.text)
+    let hasil = ` *Título:* ${res.data.title}\n\n *Tipo:* ${res.data.ext}\n\n *Resolução:* ${res.data.resolution}\n\n *Tamanho:* ${res.data.filesize}\n\n *Audio:* ${res.data.result}`;
+    conn.sendMessage(id, hasil ,MessageType.text);
+})
+}	
 	
    if (text.includes("!test id")){
       conn.sendMessage(id, id, MessageType.text);
