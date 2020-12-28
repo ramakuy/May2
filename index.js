@@ -578,12 +578,26 @@ axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) =>
       var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
    }
-if (text.includes("!tts")){
+if (text.includes('!tts')){
+  var teks = text.replace(/#tts /, '')
+    axios.get('http://scrap.terhambar.com/tts?kata=${teks}')
+    .then((res) => {
+      audioToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '[Aguarde] ⌛ Carregando Audio...', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.audio)
+        })
+    })
+}
+
+/*if (text.includes("!tts")){
 const teks = text.replace(/!tts /, "")
 const gtts = (`https://rest.farzain.com/api/tts.php?id=${teks}&apikey=O8mUD3YrHIy9KM1fMRjamw8eg`)
 conn.sendMessage(id, '[Aguarde] ⌛ Carregando Audio...', MessageType.text)
     conn.sendMessage(id, gtts ,MessageType.audio);
-}
+}*/
    /*if (text.includes("..tts")) {
       const fs = require("fs");
       const spawn = require("child_process").spawn;
