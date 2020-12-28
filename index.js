@@ -550,7 +550,7 @@ axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) =>
       conn.sendMessage(id, MessageType + " / " + messageType, MessageType.text);
    }
 
-   if (text.includes("..tts")) {
+   /*if (text.includes("..tts")) {
       var texttomp3 = require("text-to-mp3");
       var texto = text.replace("!tts ", "");
       const filepath = "./mp3/som.mp3";
@@ -572,13 +572,18 @@ axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) =>
             conn.sendMessage(id, buffer, MessageType.audio);
          }, 3000);
       }, 3000);
-   }
+   }*/
 
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
    }
-
+if (text.includes("!tts")){
+const teks = text.replace(/!tts /, "")
+const gtts = (`https://rest.farzain.com/api/tts.php?id=${teks}&apikey=O8mUD3YrHIy9KM1fMRjamw8eg`)
+conn.sendMessage(id, '[Aguarde] ⌛ Carregando Audio...', MessageType.text)
+    conn.sendMessage(id, gtts ,MessageType.audio);
+}
    /*if (text.includes("..tts")) {
       const fs = require("fs");
       const spawn = require("child_process").spawn;
