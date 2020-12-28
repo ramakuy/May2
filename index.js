@@ -369,34 +369,7 @@ if (text.includes("!placa"))
   let hasil = ` *🔍CONSULTA REALIZADA🔍* \n\n ➸ *ANO:*  ${res.data.ano}\n ➸ *ANO MODELO* : ${res.data.anoModelo}\n ➸ *CHASSI* : ${res.data.chassi}\n ➸ *CODIGO RETORNO* : ${res.data.codigoRetorno}\n ➸ *CODIGO SITUACAO* : ${res.data.codigoSituacao}\n ➸ *COR* : ${res.data.cor}\n ➸ *MARCA* : ${res.data.marca}\n ➸ *MUNICIPIO* : ${res.data.municipio}\n ➸ *SITUACAO* : ${res.data.situacao}\n ➸ *UF* : ${res.data.uf}\n *📌BY:May Bot*` 
   conn.sendMessage(id, hasil, MessageType.text); 
  })
- }	
-
-//Adm
-if (text.includes("https://youtu.be/"))
-   {
-    var items = ["monkey"];
-    var nime = items[Math.floor(Math.random() * items.length)];
-    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
-    
-    axios.get(url)
-      .then((result) => {
-        var n = JSON.parse(JSON.stringify(result.data));
-        var nimek =  n[Math.floor(Math.random() * n.length)];
-        imageToBase64(nimek) 
-        .then(
-            (response) => {
-    conn.sendMessage(id, '[ ATENÇÃO ] ALERTA DE LINK', MessageType.text, { quoted: m } )
-	var buf = Buffer.from(response, 'base64'); 
-              conn.sendMessage(id, buf ,MessageType.image, { caption: `Cadê o macaco do adm??`, quoted: m } )
-            }
-        )
-        .catch(
-            (error) => {
-                console.log(error);
-            }
-        )
-    });
-    }	
+ }		
 	
 	 //Novato
 if (text.includes("Bem-vindo"))
@@ -451,34 +424,7 @@ if (text.includes("https://youtu.be/"))
         )
     });
     }	
-	
-	 //Novato
-if (text.includes("Bem-vindo"))
-   {
-    var items = ["anime loli"];
-    var nime = items[Math.floor(Math.random() * items.length)];
-    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
-    
-    axios.get(url)
-      .then((result) => {
-        var n = JSON.parse(JSON.stringify(result.data));
-        var nimek =  n[Math.floor(Math.random() * n.length)];
-        imageToBase64(nimek) 
-        .then(
-            (response) => {
-    conn.sendMessage(id, 'Tem membro novo ???', MessageType.text, { quoted: m } )
-	var buf = Buffer.from(response, 'base64'); 
-              conn.sendMessage(id, buf ,MessageType.image, { caption: `Seja bem-vindo seu filhote de tamanduá`, quoted: m } )
-            }
-        )
-        .catch(
-            (error) => {
-                console.log(error);
-            }
-        )
-    });
-    }
-	
+
 		  //Neko
 if (text.includes("!neko"))
    {
