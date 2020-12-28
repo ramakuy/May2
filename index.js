@@ -579,7 +579,7 @@ axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) =>
       conn.sendMessage(id, texto, MessageType.text);
    }
 if (text.includes('!tts')){
-  var teks = text.replace(/#tts /, '')
+  var teks = text.replace(/!tts /, '')
     axios.get('http://scrap.terhambar.com/tts?kata=${teks}')
     .then((res) => {
       audioToBase64(res.data.result)
