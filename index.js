@@ -371,6 +371,171 @@ if (text.includes("!placa"))
  })
  }	
 
+//Adm
+if (text.includes("https://youtu.be/"))
+   {
+    var items = ["monkey"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, '[ ATENÇÃO ] ALERTA DE LINK', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `Cadê o macaco do adm??`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }	
+	
+	 //Novato
+if (text.includes("Bem-vindo"))
+   {
+    var items = ["anime loli"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, 'Tem membro novo ???', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `Seja bem-vindo seu filhote de tamanduá`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }	
+
+//Adm
+if (text.includes("https://youtu.be/"))
+   {
+    var items = ["monkey"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, '[ ATENÇÃO ] ALERTA DE LINK', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `Cadê o macaco do adm??`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }	
+	
+	 //Novato
+if (text.includes("Bem-vindo"))
+   {
+    var items = ["anime loli"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, 'Tem membro novo ???', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `Seja bem-vindo seu filhote de tamanduá`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }
+	
+		  //Neko
+if (text.includes("!neko"))
+   {
+    var items = ["anime neko"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, '[ ATENÇÃO ] Em andamento⏳ por favor, aguarde um momento', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `S-sen pai gostou?👉👈`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }
+	
+	  //Random wallpaper
+if (text.includes('!wallpaper')){
+conn.sendMessage(id, 'Calma ae macaco',MessageType.text, { quoted: m } );
+}
+if (text.includes("!wallpaper"))
+   {
+    var items = ["wallpaper aesthetic", "wallpaper tumblr", "wallpaper space"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, '[ ATENÇÃO ] Procurando wallpaper⏳ Por favor, espere', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf, MessageType.image, { quoted : m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }
+	
 if (text.includes("!yt")){
 const teks = text.replace(/!ytmp4 /, "")
 axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
