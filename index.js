@@ -157,6 +157,13 @@ if (text == '!filmes'){
 conn.sendMessage(id, '∆ FILMES ∆\r\n\r\nA saga Harry Potter: https://redecanais.app/harry-potter-e-a-pedra-filosofal-dublado-2001-1080p_04229ab19.html\r\n\r\nhttps://redecanais.app/harry-potter-e-a-camara-secreta-dublado-2002-1080p_fb1b907c3.html\r\n\r\nhttps://redecanais.app/harry-potter-e-o-prisioneiro-de-azkaban-dublado-2004-1080p_7d5d9fbcb.html\r\n\r\nhttps://redecanais.app/harry-potter-e-o-calice-de-fogo-dublado-2005-1080p_dd04a3c22.html\r\n\r\nhttps://redecanais.app/harry-potter-e-a-ordem-da-fenix-dublado-2007-1080p_9c0352e77.html\r\n\r\nhttps://redecanais.app/harry-potter-e-o-enigma-do-principe-dublado-2009-1080p_e5dbb9561.html\r\n\r\nhttps://redecanais.app/harry-potter-e-as-reliquias-da-morte-parte-1-dublado-2010-1080p-1_9978c55b2.html\r\n\r\nhttps://redecanais.app/harry-potter-e-as-reliquias-da-morte-parte-2-dublado-2011-1080p_760b61376.html\r\n\r\nO mistério do convento 2: https://redecanais.app/o-misterio-do-convento-2-cacadora-de-almas-dublado-2020-1080p_0c19ff77d.html\r\n\r\nBrinquedos do terror: https://redecanais.app/brinquedos-do-terror-dublado-2020-1080p_439f9de81.html\r\n\r\nA ligação: https://redecanais.app/a-ligacao-dublado-2020-1080p_154785841.html\r\n\r\nQuando você chegou: https://redecanais.app/quando-voce-chegou-dublado-2020-1080p_6bec30294.html\r\n\r\nProcurada: https://redecanais.app/procurada-dublado-2020-1080p_aa9bc831d.html\r\n\r\nArtemis fowl: https://redecanais.app/artemis-fowl-o-mundo-secreto-dublado-2020-1080p_72ad2be60.html\r\n\r\nArmas em jogo: https://redecanais.app/armas-em-jogo-dublado-2020-1080p_592e3b00d.html\r\n\r\nUrso sem curso o filme: https://redecanais.app/ursos-sem-curso-o-filme-dublado-2020-1080p_89a6087cb.html\r\n\r\nBob esponja o incrível resgate: https://redecanais.app/bob-esponja-o-incrivel-resgate-dublado-2020-1080p_649bb0f55.html\r\n\r\nAbc do amor: https://redecanais.app/abc-do-amor-dublado-2005-720p_d8883f6f4.html\r\n\r\nA Casa do terror: https://redecanais.app/a-casa-do-terror-dublado-2019-1080p_7dfddb221.html\r\n\r\nAbracadabra: https://redecanais.app/abracadabra-dublado-1993-1080p_5facf327b.html\r\n\r\nEnola Holmes: https://redecanais.app/enola-holmes-dublado-2020-1080p_ae171f5ca.html\r\n\r\nO diabo de cada dia: https://redecanais.app/o-diabo-de-cada-dia-dublado-2020-1080p_a007f61f1.html\r\n\r\nSegurança de shopping 1 e 2: https://redecanais.app/seguranca-de-shopping-dublado-2009-1080p_ecfe1b368.html\r\n\r\nhttps://redecanais.app/seguranca-de-shopping-2-dublado-2015-1080p_8bb6c895c.html\r\n\r\nMulan: https://redecanais.app/mulan-dublado-2020-1080p_c976e9099.html\r\n\r\nEra uma vez um Deadpool: https://redecanais.app/era-uma-vez-um-deadpool-legendado-2018-1080p_ef75cc897.html\r\n\r\nFuga de Auschwitz: https://redecanais.app/fuga-de-auschwitz-dublado-2020-1080p_ec68b17a5.html\r\n\r\noração diabólica: https://redecanais.app/oracao-diabolica-dublado-2020-1080p_538434cb4.html' ,MessageType.text);
 }
 	
+if (text == '!sticker'){
+conn.sendMessage(id, 'É NA LEGENDA DA FOTO SEU PRIMATA BURRO' ,MessageType.text);
+}		 
+if (text == '/sticker'){
+conn.sendMessage(id, 'É COM ! KRL' ,MessageType.text);
+}	
+	
    if (text.includes("!cat"))
    {
       var itens = ["cat", "gatos", "cat cutie", "gato"];
@@ -496,30 +503,47 @@ axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) =>
       conn.sendMessage(id, MessageType + " / " + messageType, MessageType.text);
    }
 
-   /*if (text.includes("..tts")) {
-      var texttomp3 = require("text-to-mp3");
-      var texto = text.replace("!tts ", "");
-      const filepath = "./mp3/som.mp3";
+ if (text.includes('!pornhub')){
+var porn = text.split("!pornhub ")[1];
+    var text1 = porn.split("|")[0];
+    var text2 = porn.split("|")[1];
+    axios.get(`https://mhankbarbars.herokuapp.com/api/textpro?theme=pornhub&text1=${text1}&text2=${text2}`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, buf, MessageType.image, { quoted: m });
+        })
+    })
+}
 
-      conn.sendMessage(id, "[Aguarde] ⌛ Carregando Audio...", MessageType.text);
+if (text.includes('!text3d')){
+  var teks = text.replace(/!text3d /, '')
+    axios.get('http://jojo-api-doc.herokuapp.com/api/text3d?text={text}')
+    .then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '[❗] CALMA MACACO', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
 
-      texttomp3.getMp3(texto, function(err, data){
-         if (err){
-            console.log(err);
-         }
-         var file = fs.createWriteStream(filepath);
-         file.write(data);
-
-         console.log("MP3 SAVED");
-      });
-      setTimeout(function(){
-         const buffer = fs.readFileSync(filepath);
-         setTimeout(function(){
-            conn.sendMessage(id, buffer, MessageType.audio);
-         }, 3000);
-      }, 3000);
-   }*/
-
+if (text.includes('!pink')){
+  var teks = text.replace(/!blackpink /, '')
+    axios.get(`https://docs-jojo.herokuapp.com/api/blackpink?text=${teks}`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
+	
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
