@@ -256,8 +256,8 @@ conn.sendMessage(id, 'É COM ! KRL' ,MessageType.text);
     })
 }
    
-   if (text.includes("!porn")){
-const teks = text.replace(/!porn/, "")
+   if (text.includes("!link")){
+const teks = text.replace(/!link/, "")
 axios.get(`https://mnazria.herokuapp.com/api/porn?search=${teks}`).then((res) => {
     let porno = ` *LISTA DOS RESULTADOS* \n\n *Canal:* ${res.data.result[0].actors} \n\n *DURAÇÃO:* ${res.data.result[0].duration}  \n\n *TITULO:* ${res.data.result[0].title}\n\n *URL:* ${res.data.result[0].url}`;
     conn.sendMessage(id, porno ,MessageType.text);
@@ -512,7 +512,7 @@ var porn = text.split("!pornhub ")[1];
         .then(
           (ress) => {
             var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, '[ WAIT ] Sedang diproses⏳ silahkan tunggu sebentar', MessageType.text, { quoted: m })
+            conn.sendMessage(id, '[ ⏳ ] Calma ae filhote de tamanduá', MessageType.text, { quoted: m })
             conn.sendMessage(id, buf, MessageType.image, { quoted: m });
         })
     })
