@@ -617,10 +617,9 @@ await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
 await aruga.sendTextWithMentions(event.chat, `Olá monkey, Bem-vindo ao grupo @${event.who.replace('@c.us', '')} \n\nSe divirta✨`)
 }
 // condições quando alguém é expulso/sai do grupo
-if (event.action === 'remove' && event.who !== host) {
+if (event.action === 'exit' && event.who !== host) {
 await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
 await aruga.sendTextWithMentions(event.chat, `Mais um macaco se vai @${event.who.replace('@c.us', '')}, Vai deixar sdd✨`)
-})
 }
 
    if (text.includes("!escrever")){
