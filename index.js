@@ -518,28 +518,98 @@ var porn = text.split("!pornhub ")[1];
     })
 }
 
-if (text.includes('!text3d')){
-  var teks = text.replace(/!text3d /, '')
-    axios.get('http://jojo-api-doc.herokuapp.com/api/text3d?text={text}')
-    .then((res) => {
-      imageToBase64(res.data.result)
+	  //Random memme
+if (text.includes('!meme')){
+conn.sendMessage(id, 'Calma ae monkey',MessageType.text, { quoted: m } );
+}
+if (text.includes("!meme"))
+   {
+    var items = ["memes brasil","meme brasil","meme bolsonaro"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
         .then(
-          (ress) => {
-            conn.sendMessage(id, '[❗] CALMA MACACO', MessageType.text)
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image)
-        })
-    })
-}	
+            (response) => {
+    conn.sendMessage(id, '[ ATENÇÃO ] Hoje eu tô comediante', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf, MessageType.image, { quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }
 
-if (text.includes('!pink')){
-  var teks = text.replace(/!blackpink /, '')
-    axios.get(`https://docs-jojo.herokuapp.com/api/blackpink?text=${teks}`).then((res) => {
+ //Loli
+if (text.includes("!loli"))
+   {
+    var items = ["anime loli"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, '[ ATENÇÃO ] Em andamento⏳ por favor seu lolicon, aguarde', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `POLÍCIAAAA`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }	
+
+//Anime
+if (text.includes("!anime"))
+   {
+    var items = ["anime"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, 'A não.... Lá vem o otaku', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `Vai tomar banho seu fedido`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }	
+	
+	if (text.includes('!hug')){
+  var teks = text.replace(/!hug /, '')
+    axios.get(`https://tobz-api.herokuapp.com/api/hug`).then((res) => {
       imageToBase64(res.data.result)
         .then(
           (ress) => {
             var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image)
+            conn.sendMessage(id, buf, MessageType.gif)
         })
     })
 }	
