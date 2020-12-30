@@ -610,6 +610,18 @@ else if (text == '!fechar'){
    conn.groupSettingChange (hasil, GroupSettingChange.messageSend, true);
 conn.sendMessage(id, 'Grupo fechado' ,MessageType.text);
 }
+
+        // kondisi ketika seseorang diinvite/join group lewat link
+        if (event.action === 'add' && event.who !== host && isWelcome) {
+			await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
+            await aruga.sendTextWithMentions(event.chat, `Hello, Welcome to the group @${event.who.replace('@c.us', '')} \n\nHave fun with us✨`)
+        }
+        // kondisi ketika seseorang dikick/keluar dari group
+        if (event.action === 'remove' && event.who !== host) {
+			await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
+            await aruga.sendTextWithMentions(event.chat, `Good bye @${event.who.replace('@c.us', '')}, We'll miss you✨`)
+        }
+    })	
 	
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
