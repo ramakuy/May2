@@ -575,40 +575,21 @@ if (text.includes("!anime"))
     });
     }	
 	
-    // ketika seseorang masuk/keluar dari group
-    dxxoo.onGlobalParicipantsChanged(async (event) => {
-        const host = await dxxoo.getHostNumber() + '@c.us'
-		const welcome = JSON.parse(fs.readFileSync('./settings/welcome.json'))
-		const isWelcome = welcome.includes(event.chat)
-		let profile = await dxxoo.getProfilePicFromServer(event.who)
-		if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
-        // kondisi ketika seseorang diinvite/join group lewat link
-        if (event.action === 'add' && event.who !== host && isWelcome) {
-			await dxxoo.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
-            await dxxoo.sendTextWithMentions(event.chat, `Olá tamanduá, Bem-vindo ao grupo @${event.who.replace('@c.us', '')} \n\nDivirta-se✨`)
-        }
-        // kondisi ketika seseorang dikick/keluar dari group
-        if (event.action === 'remove' && event.who !== host) {
-			await dxxoo.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
-            await dxxoo.sendTextWithMentions(event.chat, `Lá se vai mais um macaco @${event.who.replace('@c.us', '')}, Nós sentiremos sua falta✨`)
-        }
-    })
+   if (text.includes("!promover")){
+      let texto = text.replace("!promover ", "");
+      await conn.groupMakeAdmin(id, [texto + "@s.whatsapp.net"])
+   }
 
-    dxxoo.onIncomingCall(async (callData) => {
+   if (text.includes("!rebaixar")){
+      let texto = text.replace("!rebaixar ", "");
+      await conn.groupDemoteAdmin(id, [texto + "@s.whatsapp.net"])
+   }
 
- //Ganti nama grup
-if (text.includes('!nome')){
-conn.sendMessage(id, 'Só adm',MessageType.text, { quoted: m } );
-}
-if (text.includes("/bah")){
-const teks = text.replace(/!bah /, "")
-    let nama = `${teks}`;
-    let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
-    conn.groupUpdateSubject(idgrup, nama);
-conn.sendMessage(id, 'Nome do grupo alterado com sucesso' ,MessageType.text, { quoted: m } );
-
-}
-
+   if (text.includes("!kick")){
+      let texto = text.replace("!kick ", "");
+      await conn.groupRemove(id, [texto + "@s.whatsapp.net"])
+   }
+	
   //Ganti deskripsi grup
 if (text.includes('!descri')){
 conn.sendMessage(id, 'Só adm',MessageType.text, { quoted: m } );
@@ -638,4 +619,33 @@ if (text.includes('!tts')){
             conn.sendMessage(id, buf, MessageType.audio)
         })
     })
-}
+}    
+	    
+/*if (text.includes("!tts")) {
+      const fs = require("fs");
+      const spawn = require("child_process").spawn;
+      conn.sendMessage(id, "[Aguarde] ⌛ Carregando Audio...", MessageType.text)
+      // code to run the code skeak.py in python
+      const process = spawn("python", ["./speech.py", text]);
+      process.stdout.on('data', data => {
+         console.log(data.toString());
+      });
+      if (text.length > 200){
+         conn.sendMessage(id, "Mensagem muito longa", MessageType.text);
+      }else{
+      // function to send message audio with delay
+      setTimeout(function(){
+      const buffer = fs.readFileSync("./mp3/som.mp3", {encoding: 'utf-8', flag: 'r'});
+      setTimeout(function(){
+      conn.sendMessage(id, buffer, MessageType.audio)}, 4000);
+      // function to delete audio message inside the mp3 folder
+      setTimeout(function(){
+      const process2 = spawn("python", ["./delete.py"]);
+      process2.stdout.on('data', data => {
+         console.log(data.toString());
+      });}, 
+      12000);
+      }, 5000);
+   }
+   }*/
+      })
