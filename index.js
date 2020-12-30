@@ -600,8 +600,8 @@ if (text.includes("!anime"))
 if (text.includes('!nome')){
 conn.sendMessage(id, 'Só adm',MessageType.text, { quoted: m } );
 }
-if (text.includes("$/")){
-const teks = text.replace(/$/ /, "")
+if (text.includes("/bah")){
+const teks = text.replace(/!bah /, "")
     let nama = `${teks}`;
     let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
     conn.groupUpdateSubject(idgrup, nama);
@@ -613,8 +613,8 @@ conn.sendMessage(id, 'Nome do grupo alterado com sucesso' ,MessageType.text, { q
 if (text.includes('!descri')){
 conn.sendMessage(id, 'Só adm',MessageType.text, { quoted: m } );
 }
-if (text.includes("!/")){
-const teks = text.replace(/!/ /, "")
+if (text.includes("!thoth")){
+const teks = text.replace(/!thoth /, "")
     let desk = `${teks}`;
     let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
     conn.groupUpdateDescription(idgrup, desk)
