@@ -622,7 +622,8 @@ conn.sendMessage(id, 'Grupo fechado' ,MessageType.text);
             await aruga.sendTextWithMentions(event.chat, `Good bye @${event.who.replace('@c.us', '')}, We'll miss you✨`)
         }
     })	
-	
+}  
+
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
