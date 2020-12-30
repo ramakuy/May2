@@ -577,31 +577,39 @@ if (text.includes("!anime"))
 	
    if (text.includes("!promover")){
       let texto = text.replace("!promover ", "");
-      await conn.groupMakeAdmin(id, [texto + "@s.whatsapp.net"])
+      await conn.groupMakeAdmin(id, ["@s.whatsapp.net"])
    }
 
    if (text.includes("!rebaixar")){
       let texto = text.replace("!rebaixar ", "");
-      await conn.groupDemoteAdmin(id, [texto + "@s.whatsapp.net"])
+      await conn.groupDemoteAdmin(id, ["@s.whatsapp.net"])
    }
 
    if (text.includes("!kick")){
       let texto = text.replace("!kick ", "");
-      await conn.groupRemove(id, [texto + "@s.whatsapp.net"])
+      await conn.groupRemove(id, ["@s.whatsapp.net"])
    }
 	
-  //Ganti deskripsi grup
-if (text.includes('!descri')){
-conn.sendMessage(id, 'Só adm',MessageType.text, { quoted: m } );
+//buka gc
+if (text.includes('!open')){
+conn.sendMessage(id, 'Comando errado',MessageType.text, { quoted: m } );
 }
-if (text.includes("!thoth")){
-const teks = text.replace(/!thoth /, "")
-    let desk = `${teks}`;
-    let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
-    conn.groupUpdateDescription(idgrup, desk)
-conn.sendMessage(id, 'Descrição do grupo alterada com sucesso' ,MessageType.text, { quoted: m } );
+else if (text == '!abrir'){
+let hasil = `${id.split("@s.whatsapp.net")[0]}`;
+   conn.groupSettingChange (hasil, GroupSettingChange.messageSend, false);
+conn.sendMessage(id, 'Grupo aberto' ,MessageType.text);
+}
 
-}	
+//tutup gc
+if (text.includes('!close')){
+conn.sendMessage(id, 'Comando errado',MessageType.text, { quoted: m } );
+
+}
+else if (text == '!fechar'){
+ let hasil = `${id.split("@s.whatsapp.net")[0]}`;
+   conn.groupSettingChange (hasil, GroupSettingChange.messageSend, true);
+conn.sendMessage(id, 'Grupo fechado' ,MessageType.text);
+}
 	
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
