@@ -600,7 +600,7 @@ let hasil = `${id.split("@s.whatsapp.net")[0]}`;
 conn.sendMessage(id, 'Grupo aberto' ,MessageType.text);
 }
 
-//tutup gc
+//grupo op
 if (text.includes('!close')){
 conn.sendMessage(id, 'Comando errado',MessageType.text, { quoted: m } );
 
@@ -611,16 +611,17 @@ else if (text == '!fechar'){
 conn.sendMessage(id, 'Grupo fechado' ,MessageType.text);
 }
 
-        // kondisi ketika seseorang diinvite/join group lewat link
-        if (event.action === 'add' && event.who !== host && isWelcome) {
-			await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
-            await aruga.sendTextWithMentions(event.chat, `Hello, Welcome to the group @${event.who.replace('@c.us', '')} \n\nHave fun with us✨`)
-        }
-        // kondisi ketika seseorang dikick/keluar dari group
-        if (event.action === 'remove' && event.who !== host) {
-			await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
-            await aruga.sendTextWithMentions(event.chat, `Good bye @${event.who.replace('@c.us', '')}, We'll miss you✨`)
-        }
+// condição quando alguém é adicionado/entra no grupo por meio de um link
+if (event.action === 'add' && event.who !== host && isWelcome) {
+await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
+await aruga.sendTextWithMentions(event.chat, `Olá monkey, Bem-vindo ao grupo @${event.who.replace('@c.us', '')} \n\nSe divirta✨`)
+}
+// condições quando alguém é expulso/sai do grupo
+if (event.action === 'remove' && event.who !== host) {
+await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
+await aruga.sendTextWithMentions(event.chat, `Mais um macaco se vai @${event.who.replace('@c.us', '')}, Vai deixar sdd✨`)
+})
+}
 
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
