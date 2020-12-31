@@ -470,6 +470,33 @@ axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) =>
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }	
+
+if (text.includes("!twt"))
+   {
+    var items = ["twitter maicon küster", "twitter felipe neto", "twitter crimes reais"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, '[⏳] Estou esperando os Deuses postarem algo', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf, MessageType.image, { quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    
+    });
+    }
 	
    if (text.includes("!test id")){
       conn.sendMessage(id, id, MessageType.text);
@@ -551,7 +578,7 @@ if (text.includes("!loli"))
 //Anime
 if (text.includes("!anime"))
    {
-    var items = ["anime girl", "anime beautiful", "anime", "anime aesthetic"];
+    var items = ["anime girl", "anime", "anime neko"];
     var nime = items[Math.floor(Math.random() * items.length)];
     var url = "https://api.fdci.se/rep.php?gambar=" + nime;
     
@@ -590,27 +617,6 @@ if (text.includes("!anime"))
       await conn.groupRemove(id, ["@s.whatsapp.net"])
    }
 	
-//buka gc
-if (text.includes('!open')){
-conn.sendMessage(id, 'Comando errado',MessageType.text, { quoted: m } );
-}
-else if (text == '!abrir'){
-let hasil = `${id.split("@s.whatsapp.net")[0]}`;
-   conn.groupSettingChange (hasil, GroupSettingChange.messageSend, false);
-conn.sendMessage(id, 'Grupo aberto' ,MessageType.text);
-}
-
-//grupo op
-if (text.includes('!close')){
-conn.sendMessage(id, 'Comando errado',MessageType.text, { quoted: m } );
-
-}
-else if (text == '!fechar'){
- let hasil = `${id.split("@s.whatsapp.net")[0]}`;
-   conn.groupSettingChange (hasil, GroupSettingChange.messageSend, true);
-conn.sendMessage(id, 'Grupo fechado' ,MessageType.text);
-}
-
 // condição quando alguém é adicionado/entra no grupo por meio de um link
 if (event.action === 'add' && event.who !== host && isWelcome) {
 await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
