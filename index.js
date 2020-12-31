@@ -619,15 +619,14 @@ if (text.includes("!anime"))
 	
 // condição quando alguém é adicionado/entra no grupo por meio de um link
 if (event.action === 'add' && event.who !== host && isWelcome) {
-await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
+await aruga.sendFileFromUrl(event.chat, profile, 'profile', '')
 await aruga.sendTextWithMentions(event.chat, `Olá monkey, Bem-vindo ao grupo @${event.who.replace('@c.us', '')} \n\nSe divirta✨`)
 }
 // condições quando alguém é expulso/sai do grupo
 if (event.action === 'exit' && event.who !== host) {
-await aruga.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
+await aruga.sendFileFromUrl(event.chat, profile, 'profile', '')
 await aruga.sendTextWithMentions(event.chat, `Mais um macaco se vai @${event.who.replace('@c.us', '')}, Vai deixar sdd✨`)
 }
-
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
