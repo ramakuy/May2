@@ -622,14 +622,17 @@ if (text.includes("!anime"))
       conn.sendMessage(id, texto, MessageType.text);
    }
 
-if (text.includes('!blackpink')){
-  var teks = text.replace(/!blackpink /, '')
-    axios.get(`https://docs-jojo.herokuapp.com/api/blackpink?text=${teks}`).then((res) => {
-      imageToBase64(res.data.result)
+
+if (text.includes('!kiss')){
+  var teks = text.replace(/!kiss /, '')
+    axios.get('https://tobz-api.herokuapp.com/api/kiss')
+    .then((res) => {
+      imagegifToBase64(res.data.result)
         .then(
           (ress) => {
+            conn.sendMessage(id, 'Chega mais perto', MessageType.text)
             var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image)
+            conn.sendMessage(id, buf, MessageType.imagegif)
         })
     })
 }	
@@ -642,6 +645,18 @@ if (text.includes('!blackpink')){
         .then(
           (ress) => {
             conn.sendMessage(id, '[❗] TÔ PROCURANDO', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
+
+if (text.includes('!waifu2')){
+  var teks = text.replace(/!waifu2 /, '')
+    axios.get(`https://docs-jojo.herokuapp.com/api/waifu2`).then((res) => {
+      imageToBase64(res.data.img)
+        .then(
+          (ress) => {
             var buf = Buffer.from(ress, 'base64')
             conn.sendMessage(id, buf, MessageType.image)
         })
