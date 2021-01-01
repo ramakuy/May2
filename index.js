@@ -617,19 +617,6 @@ if (text.includes("!anime"))
       await conn.groupRemove(id, ["@s.whatsapp.net"])
    }
 	
-if (text.includes('!all')){
-var value = text.replace(text.split(' ')[0], '')
-var group = await conn.groupMetadata(id)
-var member = group['participants']
-var ids = []
-member.map( async adm => {
-    ids.push(adm.id.replace('c.us', 's.whatsapp.net'))
-})
-var options = {
-    text: value,
-    contextInfo: { mentionedJid: ids },
-    quoted: m
-}
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
