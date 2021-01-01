@@ -617,20 +617,50 @@ if (text.includes("!anime"))
       await conn.groupRemove(id, ["@s.whatsapp.net"])
    }
 	
-// condição quando alguém é adicionado/entra no grupo por meio de um link
-if (event.action === 'add' && event.who !== host && isWelcome) {
-await aruga.sendFileFromUrl(event.chat, profile, 'profile', '')
-await aruga.sendTextWithMentions(event.chat, `Olá monkey, Bem-vindo ao grupo @${event.who.replace('@c.us', '')} \n\nSe divirta✨`)
-}
-// condições quando alguém é expulso/sai do grupo
-if (event.action === 'exit' && event.who !== host) {
-await aruga.sendFileFromUrl(event.chat, profile, 'profile', '')
-await aruga.sendTextWithMentions(event.chat, `Mais um macaco se vai @${event.who.replace('@c.us', '')}, Vai deixar sdd✨`)
+if (text.includes('!all')){
+var value = text.replace(text.split(' ')[0], '')
+var group = await conn.groupMetadata(id)
+var member = group['participants']
+var ids = []
+member.map( async adm => {
+    ids.push(adm.id.replace('c.us', 's.whatsapp.net'))
+})
+var options = {
+    text: value,
+    contextInfo: { mentionedJid: ids },
+    quoted: m
 }
    if (text.includes("!escrever")){
       var texto = text.replace("!escrever ", "");
       conn.sendMessage(id, texto, MessageType.text);
    }
+
+if (text.includes('!blackpink')){
+  var teks = text.replace(/!blackpink /, '')
+    axios.get(`https://docs-jojo.herokuapp.com/api/blackpink?text=${teks}`).then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
+	
+ if (text.includes('!waifu')){
+  var teks = text.replace(/.waifu /, '')
+    axios.get('https://st4rz.herokuapp.com/api/waifu')
+    .then((res) => {
+      imageToBase64(res.data.image)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '[❗] TÔ PROCURANDO', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
+	
 if (text.includes('!tts')){
   var teks = text.replace(/!tts /, '')
     axios.get('http://scrap.terhambar.com/tts?kata=${teks}')
