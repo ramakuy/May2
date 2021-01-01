@@ -622,9 +622,35 @@ if (text.includes("!anime"))
       conn.sendMessage(id, texto, MessageType.text);
    }
 
-
-if (text.includes('!kiss')){
-  var teks = text.replace(/!kiss /, '')
+//Beijo
+if (text.includes("!kiss"))
+   {
+    var items = ["kiss"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, 'Chega mais perto', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `👉👈`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }	
+	
+if (text.includes('!bj')){
+  var teks = text.replace(/!bj /, '')
     axios.get('https://tobz-api.herokuapp.com/api/kiss')
     .then((res) => {
       imagegifToBase64(res.data.result)
@@ -637,22 +663,8 @@ if (text.includes('!kiss')){
     })
 }	
 	
- if (text.includes('!waifu')){
-  var teks = text.replace(/.waifu /, '')
-    axios.get('https://st4rz.herokuapp.com/api/waifu')
-    .then((res) => {
-      imageToBase64(res.data.image)
-        .then(
-          (ress) => {
-            conn.sendMessage(id, '[❗] TÔ PROCURANDO', MessageType.text)
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image)
-        })
-    })
-}	
-
-if (text.includes('!waifu2')){
-  var teks = text.replace(/!waifu2 /, '')
+if (text.includes('!waifu')){
+  var teks = text.replace(/!waifu /, '')
     axios.get(`https://docs-jojo.herokuapp.com/api/waifu2`).then((res) => {
       imageToBase64(res.data.img)
         .then(
