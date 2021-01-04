@@ -622,6 +622,53 @@ if (text.includes("!anime"))
       conn.sendMessage(id, texto, MessageType.text);
    }
 
+  //Ganti nama grup
+if (text.includes('!Name')){
+conn.sendMessage(id, 'Errado',MessageType.text, { quoted: m } );
+}
+if (text.includes("!name")){
+const teks = text.replace(/.setname /, "")
+    let nama = `${teks}`;
+    let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
+    conn.groupUpdateSubject(idgrup, nama);
+conn.sendMessage(id, 'Nome mudado' ,MessageType.text, { quoted: m } );
+
+}
+
+  //Ganti deskripsi grup
+if (text.includes('!Descgp')){
+conn.sendMessage(id, 'Errado',MessageType.text, { quoted: m } );
+}
+if (text.includes("!descgp")){
+const teks = text.replace(/.setdesc /, "")
+    let desk = `${teks}`;
+    let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
+    conn.groupUpdateDescription(idgrup, desk)
+conn.sendMessage(id, 'Descrição mudada' ,MessageType.text, { quoted: m } );
+
+}
+
+//buka gc
+if (text.includes('!Opengp')){
+conn.sendMessage(id, 'Errado',MessageType.text, { quoted: m } );
+}
+else if (text == '!opengp'){
+let hasil = `${id.split("@s.whatsapp.net")[0]}`;
+   conn.groupSettingChange (hasil, GroupSettingChange.messageSend, false);
+conn.sendMessage(id, 'Grupo aberto' ,MessageType.text);
+}
+
+//tutup gc
+if (text.includes('!Closegp')){
+conn.sendMessage(id, 'Errado',MessageType.text, { quoted: m } );
+
+}
+else if (text == '!closegp'){
+ let hasil = `${id.split("@s.whatsapp.net")[0]}`;
+   conn.groupSettingChange (hasil, GroupSettingChange.messageSend, true);
+conn.sendMessage(id, 'Grupo fechado' ,MessageType.text);
+}	
+	
 //Beijo
 if (text.includes("!kiss"))
    {
