@@ -627,7 +627,7 @@ if (text.includes('!Name')){
 conn.sendMessage(id, 'Errado',MessageType.text, { quoted: m } );
 }
 if (text.includes("!name")){
-const teks = text.replace(/.setname /, "")
+const teks = text.replace(/!name /, "")
     let nama = `${teks}`;
     let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
     conn.groupUpdateSubject(idgrup, nama);
@@ -640,7 +640,7 @@ if (text.includes('!Descgp')){
 conn.sendMessage(id, 'Errado',MessageType.text, { quoted: m } );
 }
 if (text.includes("!descgp")){
-const teks = text.replace(/.setdesc /, "")
+const teks = text.replace(/!descgp /, "")
     let desk = `${teks}`;
     let idgrup = `${id.split("@s.whatsapp.net")[0]}`;
     conn.groupUpdateDescription(idgrup, desk)
