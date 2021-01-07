@@ -217,6 +217,32 @@ conn.sendMessage(id, 'É COM ! KRL' ,MessageType.text);
 
    }
 
+   if (text.includes("!wallpaper"))
+   {
+      var texto = text.replace("!wallpaper ", "");
+      var url = "https://api.fdci.se/rep.php?gambar=" + texto;
+
+      axios.get(url)
+         .then((result) => {
+            var b = JSON.parse(JSON.stringify(result.data));
+            var imagem = b[1];
+            imageToBase64(imagem)
+            .then(
+               (response) => {
+            var buf = Buffer.from(response, 'base64');
+                  conn.sendMessage(
+                     id, buf, MessageType.image)
+               }
+            )
+            .catch(
+               (error) => {
+                  console.log(error);
+               }
+            )
+         });
+
+   }	
+	
    if (text.includes('!trap')){
   var teks = text.replace(/!trap /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/nsfwtrap`).then((res) => {
@@ -229,6 +255,32 @@ conn.sendMessage(id, 'É COM ! KRL' ,MessageType.text);
     })
 }
    
+   if (text.includes("!anime"))
+   {
+      var texto = text.replace("!anime ", "");
+      var url = "https://api.fdci.se/rep.php?gambar=" + texto;
+
+      axios.get(url)
+         .then((result) => {
+            var b = JSON.parse(JSON.stringify(result.data));
+            var imagem = b[1];
+            imageToBase64(imagem)
+            .then(
+               (response) => {
+            var buf = Buffer.from(response, 'base64');
+                  conn.sendMessage(
+                     id, buf, MessageType.image)
+               }
+            )
+            .catch(
+               (error) => {
+                  console.log(error);
+               }
+            )
+         });
+
+   }	
+	
    if (text.includes("!link")){
 const teks = text.replace(/!link/, "")
 axios.get(`https://mnazria.herokuapp.com/api/porn?search=${teks}`).then((res) => {
@@ -433,10 +485,10 @@ if (text.includes("!neko"))
     }
 	
 	  //Random wallpaper
-if (text.includes('!wallpaper')){
+if (text.includes('!wallpaper2')){
 conn.sendMessage(id, 'Calma ae macaco',MessageType.text, { quoted: m } );
 }
-if (text.includes("!wallpaper"))
+if (text.includes("!wallpaper2"))
    {
     var items = ["wallpaper aesthetic", "wallpaper tumblr", "wallpaper space"];
     var nime = items[Math.floor(Math.random() * items.length)];
@@ -461,6 +513,35 @@ if (text.includes("!wallpaper"))
         )
     });
     }
+	
+if (text.includes('!wallpaper3')){
+conn.sendMessage(id, 'Calma ae macaco',MessageType.text, { quoted: m } );
+}
+if (text.includes("!wallpaper3"))
+   {
+    var items = ["wallpaper anime", "wallpaper disney", "wallpaper horror"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, '[ ATENÇÃO ] Procurando wallpaper⏳ Por favor, espere', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf, MessageType.image, { quoted : m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }	
 	
 if (text.includes("!yt")){
 const teks = text.replace(/!ytmp4 /, "")
@@ -576,7 +657,7 @@ if (text.includes("!loli"))
     }	
 
 //Anime
-if (text.includes("!anime"))
+if (text.includes("!anime2"))
    {
     var items = ["anime girl", "anime", "anime neko"];
     var nime = items[Math.floor(Math.random() * items.length)];
