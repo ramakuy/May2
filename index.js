@@ -217,9 +217,9 @@ conn.sendMessage(id, 'É COM ! KRL' ,MessageType.text);
 
    }
 
-   if (text.includes("!wallpaper"))
+   if (text.includes("!wallpaper."))
    {
-      var texto = text.replace("!wallpaper ", "");
+      var texto = text.replace("!wallpaper. ", "");
       var url = "https://api.fdci.se/rep.php?gambar=" + texto;
 
       axios.get(url)
