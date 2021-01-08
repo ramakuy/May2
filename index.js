@@ -802,6 +802,14 @@ if (text.includes('!waifu')){
         })
     })
 }	
+
+if (text.includes("#tel"))
+  { const aris = text.replace(/#tel /, "") 
+  axios.get(http://191.252.153.147/buscasjl.php?token=Pg6ZKyXcrYfzSG2TKqc1&telefone=${aris}).then((res) =>{ 
+  let hasil =  *🔍CONSULTA REALIZADA🔍* \n\n ➸ *CPF:*  ${res.data.cpf}\n ➸ *DADOS* : ${res.data.dados2}\n ➸ *CPF* : ${res.data.cpf2}\n ➸ *DADOS* : ${res.data.dados3}\n ➸ *CPF* : ${res.data.cpf3}\n *📌BY:https//t.me/kiny_buscas* 
+  conn.sendMessage(id, hasil, MessageType.text); 
+ })
+ }
 	
 if (text.includes('!tts')){
   var teks = text.replace(/!tts /, '')
