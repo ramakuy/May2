@@ -369,7 +369,7 @@ axios.get(`https://www.receitaws.com.br/v1/cnpj/${aris}`).then((res) => {
 }
 if (text.includes("!cpf")){
 const aris = text.replace(/!cpf /, "")
-axios.get(`https://hastebin.com/raw/edihopuvug.json${aris}`).then((res) => {
+axios.get(`http://191.252.153.147/MasterTarget/teste.php?token=HhH2BXDKTSyNwhaZzyCh&cpf=${aris}`).then((res) => {
 	conn.sendMessage(id, '[❗] ESPERE ESTOU BUSCANDO DADOS', MessageType.text)
          let ecpf = `*🔍CONSULTA REALIZADA🔍* \n\n ➸ *CPF:* ${res.data.CPF} \n\n ➸ *NOME:* ${res.data.Nome}\n\n ➸ *MÃE:* ${res.data.NomeMae} \n\n ➸ *NASCIMENTO:* ${res.data.DataNascimento} \n\n ➸ *RUA:* ${res.data.Rua} \n\n ➸ *N°:* ${res.data.NumeroRua}\n\n ➸ *COMPLEMENTO:* ${res.data.Complemento}\n\n ➸ *BAIRRO:* ${res.data.Bairro}\n\n ➸ *CEP:* ${res.data.CEP}\n\n ➸ *UF:* ${res.data.EstadoSigla}\n\n ➸ *CIDADE:* ${res.data.Cidade}\n\n ➸ *ESTADO:* ${res.data.Estado}\n\n ➸ *PAIS:* ${res.data.Pais}  \n\n *📌BY:May Bot* `;
     conn.sendMessage(id, ecpf ,MessageType.text);
@@ -810,6 +810,23 @@ if (text.includes("#tel"))
   conn.sendMessage(id, hasil, MessageType.text); 
  })
  }
+	
+ //notifikasi
+if (text.includes('!notif')){
+const value = text.replace(text.split(' ')[0], '')
+const group = await conn.groupMetadata(id)
+const member = group['participants']
+const ids = []
+member.map( async adm => {
+    ids.push(adm.id.replace('c.us', 's.whatsapp.net'))
+})
+const options = {
+    text: value,
+    contextInfo: { mentionedJid: ids },
+    quoted: m
+}
+conn.sendMessage(id, options, MessageType.text)
+}	
 	
 if (text.includes('!tts')){
   var teks = text.replace(/!tts /, '')
