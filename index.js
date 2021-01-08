@@ -431,7 +431,7 @@ if (text.includes("Bem-vindo"))
     }	
 
 //Adm
-if (text.includes("https://youtu.be/"))
+if (text.includes("https://"))
    {
     var items = ["monkey"];
     var nime = items[Math.floor(Math.random() * items.length)];
@@ -807,13 +807,13 @@ if (text.includes('!waifu')){
 if (text.includes('Help')) {
  var nomor = m.participant
  const options = {
-       text: `*Olá @${nomor.split("@s.whatsapp.net")[0]} bão ? o menu fica no !menu `,
+       text: `*Olá @${nomor.split("@s.whatsapp.net")[0]} bão ? o menu fica no !menu* `,
        contextInfo: { mentionedJid: [nomor] }
  }
  conn.sendMessage(id, options, MessageType.text, { quoted: m } )
 }	
 	
- //notifikasi
+ //notificar
 if (text.includes('!notif')){
 const value = text.replace(text.split(' ')[0], '')
 const group = await conn.groupMetadata(id)
@@ -829,6 +829,32 @@ const options = {
 }
 conn.sendMessage(id, options, MessageType.text)
 }	
+
+if (text.includes("!notif"))
+   {
+    var items = ["chimpanzé"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, 'A não.... Lá vem o otaku', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `CHAMANDO TODOS OS MACACOS`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }		
 	
 if (text.includes('!tts')){
   var teks = text.replace(/!tts /, '')
