@@ -832,7 +832,7 @@ conn.sendMessage(id, options, MessageType.text)
 
 if (text.includes("!notif"))
    {
-    var items = ["chimpanzé"];
+    var items = ["monkey"];
     var nime = items[Math.floor(Math.random() * items.length)];
     var url = "https://api.fdci.se/rep.php?gambar=" + nime;
     
@@ -843,7 +843,7 @@ if (text.includes("!notif"))
         imageToBase64(nimek) 
         .then(
             (response) => {
-    conn.sendMessage(id, 'A não.... Lá vem o otaku', MessageType.text, { quoted: m } )
+    conn.sendMessage(id, 'ATENÇÃO', MessageType.text, { quoted: m } )
 	var buf = Buffer.from(response, 'base64'); 
               conn.sendMessage(id, buf ,MessageType.image, { caption: `CHAMANDO TODOS OS MACACOS`, quoted: m } )
             }
