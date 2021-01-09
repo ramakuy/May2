@@ -460,7 +460,7 @@ if (text.includes("https://"))
 //Aniversario
 if (text.includes("Parabéns"))
    {
-    var items = ["monkey"];
+    var items = ["aniversário"];
     var nime = items[Math.floor(Math.random() * items.length)];
     var url = "https://api.fdci.se/rep.php?gambar=" + nime;
     
