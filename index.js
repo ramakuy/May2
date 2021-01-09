@@ -460,7 +460,7 @@ if (text.includes("https://"))
 //Aniversario
 if (text.includes("Parabéns"))
    {
-    var items = ["aniversário"];
+    var items = ["monkey"];
     var nime = items[Math.floor(Math.random() * items.length)];
     var url = "https://api.fdci.se/rep.php?gambar=" + nime;
     
@@ -471,7 +471,7 @@ if (text.includes("Parabéns"))
         imageToBase64(nimek) 
         .then(
             (response) => {
-    conn.sendMessage(id, 'VENHAM DAR PARABÉN PRO NOSSO TAMANDUÁ', MessageType.text, { quoted: m } )
+    conn.sendMessage(id, 'VENHAM DAR PARABÉNS PRO NOSSO TAMANDUÁ', MessageType.text, { quoted: m } )
 	var buf = Buffer.from(response, 'base64'); 
               conn.sendMessage(id, buf ,MessageType.image, { caption: `PARABÉNS MONKEY !!!!!! FELICIDADES. MAY TE AMA`, quoted: m } )
             }
@@ -586,14 +586,66 @@ if (text.includes("!wallpaper3"))
     });
     }	
 	
-if (text.includes("!yt")){
-const teks = text.replace(/!ytmp4 /, "")
-axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
-	conn.sendMessage(id, '[ESPERA] Procurando...⏳', MessageType.text)
-    let hasil = ` *Título:* ${res.data.title}\n\n *Tipo:* ${res.data.ext}\n\n *Resolução:* ${res.data.resolution}\n\n *Tamanho:* ${res.data.filesize}\n\n *Audio:* ${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
-})
-}	
+if (text.includes("!mp4"))
+   {
+      const url = text.replace(/!mp4 /, "");
+      const exec = require('child_process').exec;
+
+      var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+
+      const ytdl = require("ytdl-core")
+      if (videoid != null)
+      {
+         console.log("video id = ", videoid[1]);
+      }
+      else
+      {
+         conn.sendMessage(id, "Ih macaco.... link tá errado", MessageType.text)
+      }
+      ytdl.getInfo(videoid[1]).then(info =>
+      {
+         if (info.length_seconds > 1000)
+         {
+            conn.sendMessage(id, " videonya kepanjangan", MessageType.text)
+         }
+         else
+         {
+
+            console.log(info.length_seconds)
+
+            function os_func()
+            {
+               this.execCommand = function (cmd)
+               {
+                  return new Promise((resolve, reject) =>
+                  {
+                     exec(cmd, (error, stdout, stderr) =>
+                     {
+                        if (error)
+                        {
+                           reject(error);
+                           return;
+                        }
+                        resolve(stdout)
+                     });
+                  })
+               }
+            }
+            var os = new os_func();
+
+            os.execCommand('ytdl ' + url + ' -q highest -o mp4/' + videoid[1] + '.mp4').then(res =>
+            {
+		const buffer = fs.readFileSync("mp4/"+ videoid[1] +".mp4")
+               conn.sendMessage(id, buffer, MessageType.video)
+            }).catch(err =>
+            {
+               console.log("os >>>", err);
+            })
+
+         }
+      });
+
+   }
 
 if (text.includes("!twt"))
    {
@@ -846,6 +898,58 @@ if (text.includes('!waifu')){
     })
 }	
 
+if (text.includes('!map')){
+  var teks = text.replace(/!map /, '')
+    axios.get('https://mnazria.herokuapp.com/api/maps?search='+teks)
+    .then((res) => {
+      imageToBase64(res.data.gambar)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '🔍 PROCURANDO...', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}	
+	
+ //Chamado
+if (text.includes('Algum adm?')) {
+ var nomor = m.participant
+ const options = {
+       text: `*Aoba @${nomor.split("@s.whatsapp.net")[0]}, manda o papo* `,
+       contextInfo: { mentionedJid: [nomor] }
+ }
+ conn.sendMessage(id, options, MessageType.text, { quoted: m } )
+}		
+	
+ //Educacao
+if (text.includes('Bom dia')) {
+ var nomor = m.participant
+ const options = {
+       text: `*Bom dia @${nomor.split("@s.whatsapp.net")[0]}, cê tá bão ?* `,
+       contextInfo: { mentionedJid: [nomor] }
+ }
+ conn.sendMessage(id, options, MessageType.text, { quoted: m } )
+}	
+
+if (text.includes('Bom tarde')) {
+ var nomor = m.participant
+ const options = {
+       text: `*Boa tarde @${nomor.split("@s.whatsapp.net")[0]}, cê tá bão ?* `,
+       contextInfo: { mentionedJid: [nomor] }
+ }
+ conn.sendMessage(id, options, MessageType.text, { quoted: m } )
+}		
+
+if (text.includes('Boa noite')) {
+ var nomor = m.participant
+ const options = {
+       text: `*Boa noite @${nomor.split("@s.whatsapp.net")[0]}, cê tá bão ?* `,
+       contextInfo: { mentionedJid: [nomor] }
+ }
+ conn.sendMessage(id, options, MessageType.text, { quoted: m } )
+}		
+	
  //Menu
 if (text.includes('Help')) {
  var nomor = m.participant
