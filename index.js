@@ -118,7 +118,7 @@ if (text == '!playlist'){
 conn.sendMessage(id, 'https://open.spotify.com/playlist/1xm2tB85vyIgEBWdGWSFOH?si=Vwkxfqc1TZKH_YRXaC8flg' ,MessageType.text);
 }
 if (text == 'Regrasmid'){
-conn.sendMessage(id, '⚠ GRUPO DA MID ⚠ *SITE: www.oficialmidnight.com\r\n\r\nPROÍBIDO :\r\n\r\n• DIVULGAÇÃO DE OUTRO CONTEÚDO.\r\n\r\n• CONTEÚDO ADULTO (23:00 a 03:00 pode)\r\n\r\n• SPAMAR FIGURINHAS.\r\n\r\nMidnight 音楽' ,MessageType.text);
+conn.sendMessage(id, '⚠ GRUPO DA MID ⚠\r\n\r\*SITE: www.oficialmidnight.com\r\n\r\nPROÍBIDO :\r\n\r\n• DIVULGAÇÃO DE OUTRO CONTEÚDO.\r\n\r\n• CONTEÚDO ADULTO (23:00 a 03:00 pode)\r\n\r\n• SPAMAR FIGURINHAS.\r\n\r\nMidnight 音楽' ,MessageType.text);
 }
 if (text == 'Regrasrx'){
 conn.sendMessage(id, '⚠ REGRAS DO GRUPO ⚠\r\n\r\nValem para todos.(Inclusive ADMs)\r\n\r\nProibido SPAM, FLOOD incluindo emoji, correntes, gemidão.\r\n\r\nDIVULGAÇÃO DE LINKS SEM PERMISSÃO DE ADM, porém divulgação de outros grupos não serão aceitos em hipótese alguma, caso de permaban.\r\n\r\nTodos os membros devem se respeitar.\r\n\r\nProibido todo tipo de spoiler.\r\n\r\nCONTEÚDO SEXUAL (ISSO NÃO INCLUÍ conteúdo sujo).\r\n\r\nProibido qualquer conteúdo sexual antes das 00:00\r\n\r\nQualquer reclamação/pedido de link peçam NO GRUPO e marquem os adms.' ,MessageType.text);
@@ -136,6 +136,9 @@ conn.sendMessage(id, 'É NA LEGENDA DA FOTO SEU PRIMATA BURRO' ,MessageType.text
 if (text == '/sticker'){
 conn.sendMessage(id, 'É COM ! KRL' ,MessageType.text);
 }	
+if (text == 'Menu'){
+conn.sendMessage(id, '!menu' ,MessageType.text);
+}
 	
    if (text.includes("!cat"))
    {
@@ -431,32 +434,31 @@ if (text.includes("Bem-vindo"))
     }	
 
 //Adm
-if (text.includes("https://"))
-   {
-    var items = ["monkey"];
-    var nime = items[Math.floor(Math.random() * items.length)];
-    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
-    
-    axios.get(url)
-      .then((result) => {
-        var n = JSON.parse(JSON.stringify(result.data));
-        var nimek =  n[Math.floor(Math.random() * n.length)];
-        imageToBase64(nimek) 
-        .then(
-            (response) => {
-    conn.sendMessage(id, '[ ATENÇÃO ] ALERTA DE LINK', MessageType.text, { quoted: m } )
-	var buf = Buffer.from(response, 'base64'); 
-              conn.sendMessage(id, buf ,MessageType.image, { caption: `Cadê o macaco do adm??`, quoted: m } )
-            }
-        )
-        .catch(
-            (error) => {
-                console.log(error);
-            }
-        )
-    });
-    }	
+if (text.includes('https://')) {
+ var nomor = m.participant
+ const options = {
+       text: `*Olá @${nomor.split("@s.whatsapp.net")[0]} se você não apagar o adm vai comer seu cú* `,
+       contextInfo: { mentionedJid: [nomor] }
+ }
+ conn.sendMessage(id, options, MessageType.text, { quoted: m } )
+}	
 
+if (text.includes('https://')){
+const value = text.replace(text.split(' ')[0], 'ADMEEE PEGA O MACACOOOOO!!!')
+const group = await conn.groupMetadata(id)
+const member = group['participants']
+const ids = []
+member.map( async adm => {
+    ids.push(adm.id.replace('c.us', 's.whatsapp.net'))
+})
+const options = {
+    text: value,
+    contextInfo: { mentionedJid: ids },
+    quoted: m
+}
+conn.sendMessage(id, options, MessageType.text)
+}	
+	
 //Aniversario
 if (text.includes("Parabéns"))
    {
@@ -586,67 +588,6 @@ if (text.includes("!wallpaper3"))
     });
     }	
 	
-if (text.includes("!mp4"))
-   {
-      const url = text.replace(/!mp4 /, "");
-      const exec = require('child_process').exec;
-
-      var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-
-      const ytdl = require("ytdl-core")
-      if (videoid != null)
-      {
-         console.log("video id = ", videoid[1]);
-      }
-      else
-      {
-         conn.sendMessage(id, "Ih macaco.... link tá errado", MessageType.text)
-      }
-      ytdl.getInfo(videoid[1]).then(info =>
-      {
-         if (info.length_seconds > 1000)
-         {
-            conn.sendMessage(id, " videonya kepanjangan", MessageType.text)
-         }
-         else
-         {
-
-            console.log(info.length_seconds)
-
-            function os_func()
-            {
-               this.execCommand = function (cmd)
-               {
-                  return new Promise((resolve, reject) =>
-                  {
-                     exec(cmd, (error, stdout, stderr) =>
-                     {
-                        if (error)
-                        {
-                           reject(error);
-                           return;
-                        }
-                        resolve(stdout)
-                     });
-                  })
-               }
-            }
-            var os = new os_func();
-
-            os.execCommand('ytdl ' + url + ' -q highest -o mp4/' + videoid[1] + '.mp4').then(res =>
-            {
-		const buffer = fs.readFileSync("mp4/"+ videoid[1] +".mp4")
-               conn.sendMessage(id, buffer, MessageType.video)
-            }).catch(err =>
-            {
-               console.log("os >>>", err);
-            })
-
-         }
-      });
-
-   }
-
 if (text.includes("!twt"))
    {
     var items = ["twitter maicon küster", "twitter felipe neto", "twitter crimes reais"];
