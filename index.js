@@ -457,6 +457,49 @@ if (text.includes("https://"))
     });
     }	
 
+//Aniversario
+if (text.includes("Parabéns"))
+   {
+    var items = ["monkey"];
+    var nime = items[Math.floor(Math.random() * items.length)];
+    var url = "https://api.fdci.se/rep.php?gambar=" + nime;
+    
+    axios.get(url)
+      .then((result) => {
+        var n = JSON.parse(JSON.stringify(result.data));
+        var nimek =  n[Math.floor(Math.random() * n.length)];
+        imageToBase64(nimek) 
+        .then(
+            (response) => {
+    conn.sendMessage(id, 'VENHAM DAR PARABÉN PRO NOSSO TAMANDUÁ', MessageType.text, { quoted: m } )
+	var buf = Buffer.from(response, 'base64'); 
+              conn.sendMessage(id, buf ,MessageType.image, { caption: `PARABÉNS MONKEY !!!!!! FELICIDADES. MAY TE AMA`, quoted: m } )
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    });
+    }		
+
+if (text.includes('Parabéns')){
+const value = text.replace(text.split(' ')[0], '')
+const group = await conn.groupMetadata(id)
+const member = group['participants']
+const ids = []
+member.map( async adm => {
+    ids.push(adm.id.replace('c.us', 's.whatsapp.net'))
+})
+const options = {
+    text: value,
+    contextInfo: { mentionedJid: ids },
+    quoted: m
+}
+conn.sendMessage(id, options, MessageType.text)
+}		
+	
 		  //Neko
 if (text.includes("!neko"))
    {
